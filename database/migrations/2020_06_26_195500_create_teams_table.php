@@ -14,10 +14,9 @@ class CreateTeamsTable extends Migration
     public function up()
     {
         Schema::create('teams', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->integer('manager_id');
-            $table->foreign('manager_id')->references('id')->on('mangers');
+            $table->id('id')->comment('id команды');
+            $table->foreignId('creator_id')->comment('id создателя')->constrained('users');
+            $table->string('name')->comment('Название команды');
             $table->timestamps();
         });
     }
